@@ -1,11 +1,10 @@
-import ChannelSelect from "@/components/ChannelSelect/ChannelSelect";
-import React from "react";
+import React from 'react'
 import { FaDiscord, FaHashtag } from "react-icons/fa";
 import { AiFillQuestionCircle } from "react-icons/ai";
 import { MdInbox, MdPeopleAlt } from "react-icons/md";
 import { BsFillPinAngleFill, BsBellSlashFill } from "react-icons/bs";
-import Searchbar from "@/components/Searchbar/Searchbar";
-
+import ChannelSelect from '@/components/ChannelSelect/ChannelSelect';
+import { BiSolidConversation } from 'react-icons/bi';
 export default function page() {
   return (
     <div className="h-screen text-primary bg-primary relative md:flex w-full">
@@ -27,14 +26,11 @@ export default function page() {
             <div className="w-full rounded p-3 bg-message"></div>
           </div> */}
         </div>
-        <div className="absolute top-0 h-12 px-2 shadow-md flex justify-between w-full">
+        <div className="absolute top-0 py-2 h-12 px-4 shadow-md flex justify-between w-full">
           <div></div>
-          <div className="text-secondary text-xl flex gap-5 items-center">
-            <FaHashtag />
-            <BsBellSlashFill />
-            <BsFillPinAngleFill />
-            <MdPeopleAlt />
-            <Searchbar />
+          <div className="text-secondary text-2xl flex gap-4 items-center">
+            <BiSolidConversation/>
+            <div className="h-full w-[1px] bg-secondary-light"/>
             <MdInbox />
             <AiFillQuestionCircle />
           </div>
