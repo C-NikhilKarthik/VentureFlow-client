@@ -11,7 +11,7 @@
 }
 
 body{
-  font-family: Ubuntu;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
