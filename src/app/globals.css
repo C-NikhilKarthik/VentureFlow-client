@@ -22,6 +22,11 @@ body{
   }
 }
 
+::selection{
+  background: #9a99f2;
+  color:#ccdcff;
+}
+
 
 .mask-1{
   -webkit-mask-image: url("../../public/black-circle.png");

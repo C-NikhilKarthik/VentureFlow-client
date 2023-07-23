@@ -1,17 +1,18 @@
 import React from "react";
-import "./login.css";
+import "./register.css";
 import { BsFacebook, BsGithub } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { FaUser } from "react-icons/fa";
 import { MdPassword } from "react-icons/md";
+import Link from "next/link";
 
 export default function page() {
   return (
     <div className="card">
       <div className="text-3xl font-semibold text-slate-200">
-        Login to your Account
+        Create an Account
       </div>
-      <div className="text-xs text-slate-500">Login using Social networks</div>
+      <div className="text-xs text-slate-500">Register using Social networks</div>
       <div className="gap-4 -mt-2 w-fit flex text-2xl text-slate-600">
         <BsFacebook style={{color:"#4267B2"}} className="cursor-pointer" />
         <FcGoogle className="cursor-pointer"/>
@@ -43,7 +44,11 @@ export default function page() {
         <MdPassword className="absolute pointer-events-none right-2 text-slate-400"/>
       </div>
 
-      <button className="w-full rounded bg-[#6583aa] text-slate-200 py-3 font-semibold text-xl" type="submit">Login</button>
+      <div className="w-full flex justify-start text-slate-400">
+      <Link href="/login"className="text-xs pl-2 -mt-2 w-fit">Already have an Account?</Link>
+      </div>
+
+      <button className="w-full rounded bg-[#6583aa] text-slate-200 py-3 font-semibold text-xl" type="submit">Register</button>
     </div>
   );
 }
