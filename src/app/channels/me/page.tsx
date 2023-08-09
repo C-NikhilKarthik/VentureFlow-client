@@ -1,25 +1,33 @@
+"use client"
 import React from 'react'
 import { FaDiscord, FaHashtag } from "react-icons/fa";
 import { AiFillQuestionCircle } from "react-icons/ai";
 import { MdInbox, MdPeopleAlt } from "react-icons/md";
-import { BsFillPinAngleFill, BsBellSlashFill } from "react-icons/bs";
 import ChannelSelect from '@/components/ChannelSelect/ChannelSelect';
 import { BiSolidConversation } from 'react-icons/bi';
-export default function page() {
-  return (
-    <div className="h-screen text-primary bg-primary relative md:flex w-full">
-      <div className="absolute flex-col gap-2 flex md:hidden items-center bg-slate-950 p-3 h-full">
-        <ChannelSelect Icon={FaDiscord} />
-        <div className="w-8 h-[2px] rounded bg-secondary"></div>
-      </div>
+import { IoAddOutline } from 'react-icons/io5';
+import UserPanel from '@/components/UserPanel';
+export default function Page() {
 
-      <div className="md:flex md:flex-col md:gap-2 hidden md:items-center bg-tertiary p-3 w-min h-full ">
-        <ChannelSelect Icon={FaDiscord} />
-        <div className="w-8 h-[2px] rounded bg-secondary"></div>
+  return (
+    <div className="h-screen text-primary bg-secondary relative md:flex w-full">
+      {/* for mobile devices */}
+      <div className="absolute flex-col gap-2 flex md:hidden items-center bg-primary p-3 h-full">
+        <ChannelSelect Icon={FaDiscord} active={true} />
+        <div className="w-8 h-[2px] rounded flex flex-col bg-secondary"></div>
+      </div>
+      {/* for laptops and PCs */}
+      <div className="md:flex md:flex-col md:gap-2 hidden md:items-center bg-primary p-3 w-min h-full ">
+        <ChannelSelect Icon={FaDiscord} active={true} />
+        <div className="w-8 h-[2px] rounded flex flex-col bg-secondary"></div>
+        <ChannelSelect Icon={IoAddOutline} active={false} />
       </div>
 
       <div className="flex relative w-full">
-        <div className="md:flex hidden bg-secondary p-4 w-60"></div>
+      <div className="md:flex hidden md:flex-col bg-tertiary w-60">
+          <div className="flex-auto"></div>
+        <UserPanel/>
+        </div>
         <div className="flex flex-col flex-auto h-full">
           <div className="flex flex-col h-full"></div>
           {/* <div className="h-[68px] px-4">
