@@ -5,12 +5,21 @@ type InitialState =  {
     value:AuthState
 }
 
+
+type User = {
+    email:string,
+    username:string,
+    password:string,
+    dateofbirth:string
+}
+
 type AuthState = {
     isAuth: boolean,
     username: string,
     uid:string,
     isModerator:boolean
 }
+
 const initialState = {
     value:{
         isAuth: false,
@@ -18,6 +27,12 @@ const initialState = {
         uid:"",
         isModerator:false
     } as AuthState,
+    user:{
+        email:"",
+        username:"",
+        password:"",
+        dateofbirth:""
+    } as User,
 } as InitialState;
 
 export const auth = createSlice({
@@ -36,7 +51,17 @@ export const auth = createSlice({
                     isModerator:false
                 }
             }
-        }
+        },
+        // signup:(state,action:PayloadAction<User>) => {
+        //     return {
+        //         user:{
+        //             email:action.payload.email,
+        //             username:"",
+        //             password:"",
+        //             dateofbirth:""
+        //         }
+        //     }
+        // }
     }
 })
 

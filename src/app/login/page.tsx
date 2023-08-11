@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaUser } from "react-icons/fa";
 import { MdPassword } from "react-icons/md";
 
-export default function page() {
+export default function Page() {
   return (
     <div className="card">
       <div className="text-3xl font-semibold text-slate-200">

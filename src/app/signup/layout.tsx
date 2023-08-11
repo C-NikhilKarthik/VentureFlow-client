@@ -1,6 +1,6 @@
 
 export const metadata = {
-  title: "VentureFlow | Login",
+  title: "VentureFlow | Sign Up",
   description: "Project Management Solutions",
 };
 
