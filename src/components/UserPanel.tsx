@@ -85,22 +85,20 @@ export default function UserPanel() {
                 <div className="font-semibold text-xl">TheNetherAxe</div>
 
                 <div className="relative">
-                  <div
-                    className="py-2 px-4 peer border rounded text-slate-500 w-full"
-                  >
+                  <div className="py-2 px-4 peer border rounded text-slate-500 w-full">
                     {status}
                   </div>
-                    <ul className="border peer-hover:opacity-100 absolute opacity-0 right-0 translate-x-full rounded shadow-lg">
-                      {options.map((option, index) => (
-                        <li
-                          key={index}
-                          onClick={() => handleStatus(option)}
-                          className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                        >
-                          {option}
-                        </li>
-                      ))}
-                    </ul>
+                  <ul className="border peer-hover:opacity-100 absolute opacity-0 right-0 translate-x-full rounded shadow-lg">
+                    {options.map((option, index) => (
+                      <li
+                        key={index}
+                        onClick={() => handleStatus(option)}
+                        className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                      >
+                        {option}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
