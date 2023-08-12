@@ -19,6 +19,7 @@ import {
   setDOB,
 } from "@/redux/features/auth-slice";
 export default function Page() {
+  
   const options = {
     title: "Select DOB",
     autoHide: true,

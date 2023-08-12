@@ -36,9 +36,6 @@ export default function Page() {
         </div>
         <div className="flex flex-col flex-auto h-full">
           <div className="flex flex-col h-full"></div>
-          {/* <div className="h-[68px] px-4">
-            <div className="w-full rounded p-3 bg-message"></div>
-          </div> */}
         </div>
         <div className="absolute text-primary top-0 h-12 px-2 shadow-md flex justify-between w-full">
           <div></div>

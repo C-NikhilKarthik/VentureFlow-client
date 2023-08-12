@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import { muteToggle, deafenToggle } from "@/redux/features/user-panel";
@@ -11,6 +11,7 @@ import { BsCircleFill } from "react-icons/bs";
 import { MdDoNotDisturbOn } from "react-icons/md";
 import { BiSolidMoon } from "react-icons/bi";
 import { FaCircleDot } from "react-icons/fa6";
+import SettingsSync from "@/api/utils/settingsSync";
 
 const StatusIcon = (status: string) => {
   // Define the mapping of status values to React Icons
@@ -37,38 +38,47 @@ const StatusIcon = (status: string) => {
 };
 
 export default function UserPanel() {
-  const isMuted = useSelector((state: RootState) => state.userPanel.isMuted);
-  const DropDownOpen = useSelector(
-    (state: RootState) => state.userPanelCustom.dropDown
-  );
-  const status = useSelector(
-    (state: RootState) => state.userPanelCustom.status
-  );
-  const isOpen = useSelector(
-    (state: RootState) => state.userPanelCustom.isOpen
-  );
-  const isDeafened = useSelector(
-    (state: RootState) => state.userPanel.isDeafened
-  );
-  const dispatch = useDispatch<AppDispatch>();
 
+  const {
+    isMuted,
+    UserName,
+    DropDownOpen,
+    status,
+    isOpen,
+    isDeafened,
+  } = useSelector((state: RootState) => ({
+    isMuted: state.userPanel.isMuted,
+    UserName: state.userDetails.UserName,
+    DropDownOpen: state.userPanelCustom.dropDown,
+    status: state.userPanelCustom.status,
+    isOpen: state.userPanelCustom.isOpen,
+    isDeafened: state.userPanel.isDeafened,
+  }));
+
+  console.log(isMuted , isDeafened)
+  
+  const dispatch = useDispatch<AppDispatch>();
+  
   const handleDropDownToggle = () => {
     dispatch(dropDownToggle());
   };
+  
   const handleMuteToggle = () => {
     dispatch(muteToggle());
   };
-
-  const handleStatus = (status: any) => {
-    dispatch(setStatus(status));
+  
+  const handleStatus = (newStatus: any) => {
+    dispatch(setStatus(newStatus));
   };
-
+  
   const OpenModal = () => {
     dispatch(displayToggle());
   };
+  
   const handleDeafenToggle = () => {
     dispatch(deafenToggle());
   };
+  
 
   const options = ["Online", "Idle", "Do not Disturb", "Invisible"];
 
@@ -82,7 +92,7 @@ export default function UserPanel() {
           <div className="bg-[#222528] h-full p-4 pt-14 w-full">
             <div className="bg-[#111315] h-full p-3 rounded-lg">
               <div className="text-slate-200">
-                <div className="font-semibold text-xl">TheNetherAxe</div>
+                <div className="font-semibold text-xl">{UserName}</div>
 
                 <div className="relative">
                   <div className="py-2 px-4 peer border rounded text-slate-500 w-full">
@@ -115,7 +125,7 @@ export default function UserPanel() {
 
         <div className="flex flex-col justify-between h-full w-full">
           <div className="text-slate-200 text-sm font-semibold w-full truncate">
-            TheNetherAxe
+            {UserName}
           </div>
           <div className="text-slate-200 text-xs">{status}</div>
         </div>
@@ -159,14 +169,14 @@ export default function UserPanel() {
               viewBox="0 0 24 24"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M14.99 11C14.99 12.66 13.66 14 12 14C10.34 14 9 12.66 9 11V5C9 3.34 10.34 2 12 2C13.66 2 15 3.34 15 5L14.99 11ZM12 16.1C14.76 16.1 17.3 14 17.3 11H19C19 14.42 16.28 17.24 13 17.72V21H11V17.72C7.72 17.23 5 14.41 5 11H6.7C6.7 14 9.24 16.1 12 16.1ZM12 4C11.2 4 11 4.66667 11 5V11C11 11.3333 11.2 12 12 12C12.8 12 13 11.3333 13 11V5C13 4.66667 12.8 4 12 4Z"
                 fill="currentColor"
               ></path>
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M14.99 11C14.99 12.66 13.66 14 12 14C10.34 14 9 12.66 9 11V5C9 3.34 10.34 2 12 2C13.66 2 15 3.34 15 5L14.99 11ZM12 16.1C14.76 16.1 17.3 14 17.3 11H19C19 14.42 16.28 17.24 13 17.72V22H11V17.72C7.72 17.23 5 14.41 5 11H6.7C6.7 14 9.24 16.1 12 16.1Z"
                 fill="currentColor"
               ></path>
@@ -225,8 +235,8 @@ export default function UserPanel() {
           >
             <path
               fill="currentColor"
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M19.738 10H22V14H19.739C19.498 14.931 19.1 15.798 18.565 16.564L20 18L18 20L16.565 18.564C15.797 19.099 14.932 19.498 14 19.738V22H10V19.738C9.069 19.498 8.203 19.099 7.436 18.564L6 20L4 18L5.436 16.564C4.901 15.799 4.502 14.932 4.262 14H2V10H4.262C4.502 9.068 4.9 8.202 5.436 7.436L4 6L6 4L7.436 5.436C8.202 4.9 9.068 4.502 10 4.262V2H14V4.261C14.932 4.502 15.797 4.9 16.565 5.435L18 3.999L20 5.999L18.564 7.436C19.099 8.202 19.498 9.069 19.738 10ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
             ></path>
           </svg>

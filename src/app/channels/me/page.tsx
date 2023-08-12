@@ -7,7 +7,10 @@ import ChannelSelect from '@/components/ChannelSelect/ChannelSelect';
 import { BiSolidConversation } from 'react-icons/bi';
 import { IoAddOutline } from 'react-icons/io5';
 import UserPanel from '@/components/UserPanel';
+import TokenExtraction from '@/api/utils/TokenExtraction';
 export default function Page() {
+
+  TokenExtraction()
 
   return (
     <div className="h-screen text-primary bg-secondary relative md:flex w-full">
