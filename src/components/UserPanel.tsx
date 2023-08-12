@@ -11,7 +11,6 @@ import { BsCircleFill } from "react-icons/bs";
 import { MdDoNotDisturbOn } from "react-icons/md";
 import { BiSolidMoon } from "react-icons/bi";
 import { FaCircleDot } from "react-icons/fa6";
-import SettingsSync from "@/api/utils/settingsSync";
 
 const StatusIcon = (status: string) => {
   // Define the mapping of status values to React Icons
