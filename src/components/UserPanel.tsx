@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import { muteToggle, deafenToggle } from "@/redux/features/user-panel";
+import { Dropdown } from "flowbite";
 import {
   displayToggle,
   setStatus,
@@ -37,47 +38,37 @@ const StatusIcon = (status: string) => {
 };
 
 export default function UserPanel() {
+  const { isMuted, UserName, DropDownOpen, status, isOpen, isDeafened } =
+    useSelector((state: RootState) => ({
+      isMuted: state.userPanel.isMuted,
+      UserName: state.userDetails.UserName,
+      DropDownOpen: state.userPanelCustom.dropDown,
+      status: state.userPanelCustom.status,
+      isOpen: state.userPanelCustom.isOpen,
+      isDeafened: state.userPanel.isDeafened,
+    }));
 
-  const {
-    isMuted,
-    UserName,
-    DropDownOpen,
-    status,
-    isOpen,
-    isDeafened,
-  } = useSelector((state: RootState) => ({
-    isMuted: state.userPanel.isMuted,
-    UserName: state.userDetails.UserName,
-    DropDownOpen: state.userPanelCustom.dropDown,
-    status: state.userPanelCustom.status,
-    isOpen: state.userPanelCustom.isOpen,
-    isDeafened: state.userPanel.isDeafened,
-  }));
-
-  console.log(isMuted , isDeafened)
-  
   const dispatch = useDispatch<AppDispatch>();
-  
+
   const handleDropDownToggle = () => {
     dispatch(dropDownToggle());
   };
-  
+
   const handleMuteToggle = () => {
     dispatch(muteToggle());
   };
-  
+
   const handleStatus = (newStatus: any) => {
     dispatch(setStatus(newStatus));
   };
-  
+
   const OpenModal = () => {
     dispatch(displayToggle());
   };
-  
+
   const handleDeafenToggle = () => {
     dispatch(deafenToggle());
   };
-  
 
   const options = ["Online", "Idle", "Do not Disturb", "Invisible"];
 
@@ -94,20 +85,25 @@ export default function UserPanel() {
                 <div className="font-semibold text-xl">{UserName}</div>
 
                 <div className="relative">
-                  <div className="py-2 px-4 peer border rounded text-slate-500 w-full">
+                  <div
+                    className="py-2 px-4 border rounded text-slate-500 w-full"
+                    onClick={handleDropDownToggle}
+                  >
                     {status}
                   </div>
-                  <ul className="border peer-hover:opacity-100 absolute opacity-0 right-0 translate-x-full rounded shadow-lg">
-                    {options.map((option, index) => (
-                      <li
-                        key={index}
-                        onClick={() => handleStatus(option)}
-                        className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                      >
-                        {option}
-                      </li>
-                    ))}
-                  </ul>
+                  {DropDownOpen && (
+                    <ul className="border absolute right-0 translate-x-full rounded shadow-lg">
+                      {options.map((option, index) => (
+                        <li
+                          key={index}
+                          onClick={() => handleStatus(option)}
+                          className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                        >
+                          {option}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </div>
             </div>
