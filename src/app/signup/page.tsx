@@ -102,6 +102,11 @@ export default function Page() {
           type: "SUCCESS",
           message: "Account Created",
         });
+
+        setTimeout(()=>{
+          const queryString = window.location.search;
+          const newUrl = window.location.pathname.replace('/signup', '/login');
+          window.location.replace(newUrl)},1500)
       }
     } catch (error) {
       notify({
